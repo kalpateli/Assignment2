@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>task</title>
+    </head>
+    <body>
+        <form >
+            <select id="background" name="ele">
+                <option value="green" selected>Green</option>
+                <option value="blue">Blue</option>
+                <option value="red">Red</option>
+            </select>
+            <input type="number" name="ele" id="width" min="10" >
+            <input type="number" name="ele" id="height" min="10">
+            <button type="button" name="ele" id="set">Set</button>
+        </form>
+
+        <div id="box" style = "width:100px; height: 100px; background-color: green;"></div>
+        <script>
+            function createBox()
+            {
+                let col = document.getElementById("background").value;
+                let wid = document.getElementById("width").value;
+                let h = document.getElementById("height").value;
+
+                console.log(col);
+                console.log(wid);
+                console.log(h);
+
+                let box = document.getElementById("box");
+
+                // box.style.background = col ;
+                // box.style.width = wid+"px" ;
+                // box.style.height = h+"px" ;
+
+                //optimised code
+                let elements = document.getElementsByName("ele");
+                for(let i=0;i<elements.length;i++)
+                {
+                    let cssIds = elements[i].getAttribute('id');
+                    let cssValues = elements[i].value;
+
+                    if(cssIds == "width" || cssIds == "height"){
+                        cssValues = cssValues+"px";
+                    }
+ 
+                    box.style[cssIds]=cssValues;
+                }
+ 
+            }
+
+            document.getElementById("set").addEventListener("click",createBox);
+
+        </script>
+    </body>
+</html>
